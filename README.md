@@ -1,16 +1,3 @@
 # mynotesfire
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Proektni yaratib firebasega ulab bo'lgandan keyin kerakli kutubxonalar(Dependency)ni proektga qo'shib olamiz [firebase_core^] [lib/] ichidagi [firebase_options.dart] faylni [service/] ichiga olamiz, [google-services.json] yo'q bo'lsa [ios/Runner/] ichiga majburiy qo'shamiz. [main.dart] o'zgartirish kiritamiz. 
