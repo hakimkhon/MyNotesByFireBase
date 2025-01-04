@@ -10,13 +10,30 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text(
-          "Home Screen",
+    return Scaffold(
+      backgroundColor: Colors.blue[50],
+      appBar: AppBar(
+        backgroundColor: Colors.black,
+        centerTitle: true,
+        title: const Text(
+          "Firebase Auth",
           style: TextStyle(
-            fontSize: 36,
-            color: Colors.green,
+            fontSize: 24,
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        automaticallyImplyLeading: false,
+      ),
+      body: const SafeArea(
+        child: Center(
+          child: Text(
+            "Home page",
+            style: TextStyle(
+              fontSize: 24,
+              color: Colors.green,
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ),
       ),
