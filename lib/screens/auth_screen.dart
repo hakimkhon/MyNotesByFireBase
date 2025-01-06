@@ -27,11 +27,13 @@ class _AuthScreenState extends State<AuthScreen> {
                 const SizedBox(height: 50),
                 TextFormField(
                   decoration: const InputDecoration(hintText: "Inter email"),
+                  controller: _controllerEmail,
                   keyboardType: TextInputType.emailAddress,
                 ),
                 const SizedBox(height: 50),
                 TextFormField(
                   decoration: const InputDecoration(hintText: "Inter password"),
+                  controller: _controllerPassword,
                   keyboardType: TextInputType.visiblePassword,
                 ),
                 const SizedBox(height: 50),
@@ -46,6 +48,7 @@ class _AuthScreenState extends State<AuthScreen> {
                           email: _controllerEmail.text,
                           password: _controllerPassword.text,
                         );
+                    debugPrint("Create account on Pressed:******************");
                   },
                   child: context.watch<AuthCubit>().state.formsStatus ==
                           FormsStatus.loading
