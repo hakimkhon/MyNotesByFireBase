@@ -13,10 +13,19 @@ class UserModel {
   factory UserModel.fromJson(Map<String, dynamic> json) {
     FirestoryDatebase firestory = FirestoryDatebase();
     return UserModel(
-      docId: json[firestory.fullName] as String? ?? "",
-      email: json[firestory.docID] as String? ?? "",
-      fullName: json[firestory.userEmail] as String? ?? "",
+      docId: json[firestory.docID] as String? ?? "",
+      email: json[firestory.userEmail] as String? ?? "",
+      fullName: json[firestory.fullName] as String? ?? "",
     );
+  }
+  
+  Map<String, dynamic> toJson() {
+    FirestoryDatebase firestory = FirestoryDatebase();
+    return { 
+      firestory.docID: docId,
+      firestory.userEmail: email,
+      firestory.fullName: fullName,
+    };
   }
 
   factory UserModel.initial() {
@@ -38,4 +47,5 @@ class UserModel {
       fullName: fullName ?? this.fullName,
     );
   }
+
 }
