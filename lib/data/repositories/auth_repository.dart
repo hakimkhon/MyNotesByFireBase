@@ -21,7 +21,7 @@ class AuthRepository {
       );
       if (userCredential.user != null) {
         StorageRepository.setString(key: "user_email", value: email);
-        // return await saveUser(email);
+        return await saveUser(email);
       }
     } on FirebaseAuthException catch (e) {
       networkResponse.errorText = e.friendlyMessage;

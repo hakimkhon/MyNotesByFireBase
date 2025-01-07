@@ -61,9 +61,3 @@ android {
 flutter {
     source = "../.."
 }
-
-
-// dependencies {
-//     classpath 'com.android.tools.build:gradle:8.1.0' // Eng so'nggi versiya
-//     classpath 'com.google.gms:google-services:4.4.0' // Yangilangan versiya
-// }
