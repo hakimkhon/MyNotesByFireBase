@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:mynotesfire/screens/auth/signup_screen.dart';
-import 'package:mynotesfire/screens/home/home_screen.dart';
-import 'package:mynotesfire/screens/auth/login_screen.dart';
+import 'package:mynotesfire/ui/screens/auth/signup_screen.dart';
+import 'package:mynotesfire/ui/screens/home/home_screen.dart';
+import 'package:mynotesfire/ui/screens/auth/login_screen.dart';
 
 class AppRoutesNames {
   static const String home = '/home';
