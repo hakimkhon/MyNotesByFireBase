@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mynotesfire/data/routes/app_routes.dart';
+import 'package:mynotesfire/data/service/navigation_service.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -16,19 +19,30 @@ class _HomeScreenState extends State<HomeScreen> {
         backgroundColor: Colors.black,
         centerTitle: true,
         title: const Text(
-          "Firebase Auth",
+          "Notes with Firebase",
           style: TextStyle(
             fontSize: 24,
             color: Colors.white,
             fontWeight: FontWeight.bold,
           ),
         ),
+        leading: IconButton(
+            onPressed: () {
+              NavigationService.instance.navigateMyScreenAndRemoveUntil(
+                routeName: AppRoutesNames.signup,
+              );
+            },
+            icon: Icon(
+              Icons.arrow_back,
+              color: Colors.white,
+              size: 24.sp,
+            )),
         automaticallyImplyLeading: false,
       ),
       body: const SafeArea(
         child: Center(
           child: Text(
-            "Home page",
+            "Good",
             style: TextStyle(
               fontSize: 24,
               color: Colors.green,
