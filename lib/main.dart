@@ -58,9 +58,14 @@ class MyApp extends StatelessWidget {
                 debugShowCheckedModeBanner: false,
                 title: 'FireBase',
                 theme: ThemeData(
-                  colorScheme:
-                      ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+                  // colorScheme:
+                  //     ColorScheme.fromSeed(seedColor: Colors.deepPurple),
                   useMaterial3: true,
+                  scaffoldBackgroundColor: Colors.white,
+                  appBarTheme: const AppBarTheme(
+                    backgroundColor: Colors.white,
+                    surfaceTintColor: Colors.transparent,
+                  ),
                 ),
                 navigatorKey: NavigationService.instance.navigatorKey,
                 onGenerateRoute: AppRoutes.generateRoute,
