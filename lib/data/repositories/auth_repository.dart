@@ -4,12 +4,12 @@ import 'package:mynotesfire/data/local/storage_repository.dart';
 import 'package:mynotesfire/data/model/network_response.dart';
 import 'package:mynotesfire/data/model/user_model.dart';
 import 'package:mynotesfire/data/utils/extension/app_extension.dart';
-import 'package:mynotesfire/ui/core/constant/const_names.dart';
+import 'package:mynotesfire/ui/core/constant/fixed_names.dart';
 
 class AuthRepository {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
-  final FirestoryDatebase _firestory = FirestoryDatebase();
+  final FixedNames _fixedNames = FixedNames();
 
   Future<NetworkResponse> registerUser({
     required String email,
@@ -23,7 +23,7 @@ class AuthRepository {
         password: password,
       );
       if (userCredential.user != null) {
-        StorageRepository.setString(key: _firestory.userEmail, value: email);
+        StorageRepository.setString(key: _fixedNames.userEmail, value: email);
         return await saveUser(email);
       }
     } on FirebaseAuthException catch (e) {
@@ -49,7 +49,7 @@ class AuthRepository {
         password: password,
       );
       if (userCredential.user != null) {
-        StorageRepository.setString(key: _firestory.userEmail, value: email);
+        StorageRepository.setString(key: _fixedNames.userEmail, value: email);
       }
     } on FirebaseAuthException catch (e) {
       networkResponse.errorText = e.friendlyMessage;
@@ -68,14 +68,14 @@ class AuthRepository {
 
     try {
       var result = await _firebaseFirestore
-          .collection(_firestory.collectionName)
+          .collection(_fixedNames.collectionName)
           .add(userModel.copyWith(email: email).toJson());
 
       await _firebaseFirestore
-          .collection(_firestory.collectionName)
+          .collection(_fixedNames.collectionName)
           .doc(result.id)
           .update({
-        _firestory.docID: result.id
+        _fixedNames.docID: result.id
       }); //doc_id bo'lsa yangilaydi yo'q bo'lsa yaratib beradi
     } on FirebaseException catch (e) {
       networkResponse.errorText = e.friendlyMessage;

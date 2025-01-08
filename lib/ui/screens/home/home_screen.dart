@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mynotesfire/cubit/user/user_cubit.dart';
+import 'package:mynotesfire/cubit/user/user_state.dart';
+import 'package:mynotesfire/data/enums/forms_status.dart';
 import 'package:mynotesfire/data/routes/app_routes.dart';
 import 'package:mynotesfire/data/service/navigation_service.dart';
 
@@ -11,6 +15,15 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  @override
+  void initState() {
+    context.read<UserCubit>().fetchUser();
+    // Future.microtask(() {
+    //   context.read<UserCubit>().fetchUser();
+    // });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,16 +52,28 @@ class _HomeScreenState extends State<HomeScreen> {
             )),
         automaticallyImplyLeading: false,
       ),
-      body: const SafeArea(
-        child: Center(
-          child: Text(
-            "Good",
-            style: TextStyle(
-              fontSize: 24,
-              color: Colors.green,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
+      body: SafeArea(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            BlocBuilder<UserCubit, UserState>(
+                builder: (BuildContext context, UserState state) {
+              if (state.formsStatus == FormsStatus.loading) {
+                return const Center(
+                    child: CircularProgressIndicator.adaptive());
+              }
+              return Center(
+                child: Text(
+                  state.userModel.fullName,
+                  style: TextStyle(
+                    fontSize: 24.sp,
+                    color: Colors.green,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              );
+            })
+          ],
         ),
       ),
     );

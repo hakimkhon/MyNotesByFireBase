@@ -1,4 +1,4 @@
-import 'package:mynotesfire/ui/core/constant/const_names.dart';
+import 'package:mynotesfire/ui/core/constant/fixed_names.dart';
 
 class UserModel {
   final String docId;
@@ -11,20 +11,20 @@ class UserModel {
     required this.fullName,
   });
   factory UserModel.fromJson(Map<String, dynamic> json) {
-    FirestoryDatebase firestory = FirestoryDatebase();
+    FixedNames fixedNames = FixedNames();
     return UserModel(
-      docId: json[firestory.docID] as String? ?? "",
-      email: json[firestory.userEmail] as String? ?? "",
-      fullName: json[firestory.fullName] as String? ?? "",
+      docId: json[fixedNames.docID] as String? ?? "",
+      email: json[fixedNames.userEmail] as String? ?? "",
+      fullName: json[fixedNames.fullName] as String? ?? "",
     );
   }
   
   Map<String, dynamic> toJson() {
-    FirestoryDatebase firestory = FirestoryDatebase();
+    FixedNames fixedNames = FixedNames();
     return { 
-      firestory.docID: docId,
-      firestory.userEmail: email,
-      firestory.fullName: fullName,
+      fixedNames.docID: docId,
+      fixedNames.userEmail: email,
+      fixedNames.fullName: fullName,
     };
   }
 
