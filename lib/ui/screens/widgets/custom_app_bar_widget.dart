@@ -5,11 +5,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
+  final bool loadingIcon;
   // final List<Widget>? actions;
 
   const CustomAppBar({
     super.key,
     required this.title,
+    this.loadingIcon = false,
+
     // this.actions,
   });
 
@@ -39,7 +42,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       //     },
       //   ),
       // ],
-      automaticallyImplyLeading: false,
+      automaticallyImplyLeading: loadingIcon,
       // backgroundColor: Colors.blue,
     );
   }

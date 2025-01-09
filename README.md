@@ -7,3 +7,8 @@ firestore bilan ishlash uchun kerakli kutubxonalar(Dependency)ni proektga qo'shi
 
 [user_reository.dart] va [user_cubit.dart] [user_state.dart] yozib bo'lganimizda keyin [main.dart] ga kerakli o'zgartirishlarni kiritamiz, yani [MultiRepositoryProvider va MultiBlocProvider} so'ngra [user_cubit.dart] ichiga <fetchUser> nomli Future yozamiz  
 
+addNote pageni yozib bo'lganimizdan keyin, submit btn ni bosganda yozilganlarni notesga qo'shish uchun [user_repository.dart] ga kerakli o'zgarishlarni kiritamiz. [user_model.dart] yangi yunksiya yozamiz <toJsonUserNotes> nomli
+
+endi [user_cubit.dart] ga <saveNotes> nomli Future yozamiz 
+
+

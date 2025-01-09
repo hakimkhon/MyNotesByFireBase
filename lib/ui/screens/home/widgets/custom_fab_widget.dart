@@ -9,7 +9,7 @@ class CustomFloatingActionButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return FloatingActionButton(
       onPressed: () {
-        onTap;
+        onTap();
       },
       backgroundColor: Colors.green, // Custom background color
       elevation: 10.0, // Custom elevation

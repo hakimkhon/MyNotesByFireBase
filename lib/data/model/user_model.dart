@@ -60,4 +60,12 @@ class UserModel {
       userNotes: userNotes ?? this.userNotes,
     );
   }
+
+  Map<String, dynamic> toJsonUserNotes() {
+    FixedNames fixedNames = FixedNames();
+
+    return {
+      fixedNames.userNotes: userNotes.map((value) => value.toJson()).toList(),
+    };
+  }
 }

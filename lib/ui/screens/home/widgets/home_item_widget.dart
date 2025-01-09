@@ -3,8 +3,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
 class HomeItemWidget extends StatelessWidget {
-  const HomeItemWidget({super.key, required this.onTap});
   final VoidCallback onTap;
+  final String title;
+
+  const HomeItemWidget({
+    super.key,
+    required this.onTap,
+    required this.title,
+  });
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -21,7 +28,7 @@ class HomeItemWidget extends StatelessWidget {
             ),
             child: Center(
               child: Text(
-                "state.userModel.email",
+                title,
                 style: TextStyle(
                   fontSize: 20.sp,
                   color: Colors.black,

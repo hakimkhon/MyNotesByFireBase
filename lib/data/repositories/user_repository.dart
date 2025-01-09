@@ -34,4 +34,44 @@ class UserRepository {
     }
     return networkResponse;
   }
+
+  Future<NetworkResponse> getUserForDocId({required String docId}) async {
+    NetworkResponse networkResponse = NetworkResponse();
+  
+    try {
+      var result = await _firebaseFirestore
+          .collection(_fixedNames.collectionName)
+          .doc(docId)
+          .get();
+
+      if (result.data() != null) {
+        UserModel.fromJson(result.data()!);
+      } else {
+        networkResponse.errorText = _fixedNames.notFound;
+      }
+    } on FirebaseException catch (e) {
+      networkResponse.errorText = e.friendlyMessage;
+    } catch (e) {
+      networkResponse.errorText = "Noma'lum xatolik: catch: $e";
+    }
+    return networkResponse;
+  }
+
+  Future<NetworkResponse> updateUserNotes({
+    required UserModel userModel,
+  }) async {
+    NetworkResponse networkResponse = NetworkResponse();
+
+    try {
+      await _firebaseFirestore
+          .collection(_fixedNames.collectionName)
+          .doc(userModel.docId)
+          .update(userModel.toJsonUserNotes());
+    } on FirebaseException catch (e) {
+      networkResponse.errorText = e.friendlyMessage;
+    } catch (e) {
+      networkResponse.errorText = "Noma'lum xatolik: catch: $e";
+    }
+    return networkResponse;
+  }
 }

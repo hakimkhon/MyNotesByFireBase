@@ -6,7 +6,8 @@ import 'package:mynotesfire/cubit/user/user_state.dart';
 import 'package:mynotesfire/data/enums/forms_status.dart';
 import 'package:mynotesfire/data/routes/app_routes.dart';
 import 'package:mynotesfire/data/service/navigation_service.dart';
-import 'package:mynotesfire/ui/screens/home/widgets/custom_app_bar.dart';
+import 'package:mynotesfire/ui/screens/widgets/custom_app_bar_widget.dart';
+import 'package:mynotesfire/ui/screens/home/widgets/custom_fab_widget.dart';
 import 'package:mynotesfire/ui/screens/home/widgets/home_item_widget.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -30,52 +31,58 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(title: "All Notes"),
-      body: SafeArea(
-        child: BlocBuilder<UserCubit, UserState>(
-          builder: (BuildContext context, UserState state) {
-            if (state.formsStatus == FormsStatus.loading) {
-              return const Center(child: CircularProgressIndicator.adaptive());
-            }
-            if (state.userModel.userNotes.isEmpty) {
-              return Center(
-                child: Text(
-                  "Empty Notes",
-                  style: TextStyle(
-                    fontSize: 30.sp,
-                    color: Colors.green,
-                    fontWeight: FontWeight.bold,
-                  ),
+      appBar: const CustomAppBar(title: "Notes App"),
+      body: BlocConsumer<UserCubit, UserState>(
+        builder: (BuildContext context, UserState state) {
+          if (state.formsStatus == FormsStatus.loading) {
+            return const Center(child: CircularProgressIndicator.adaptive());
+          }
+          if (state.userModel.userNotes.isEmpty) {
+            return Center(
+              child: Text(
+                "Empty Notes",
+                style: TextStyle(
+                  fontSize: 30.sp,
+                  color: Colors.green,
+                  fontWeight: FontWeight.bold,
                 ),
-              );
-            }
-
-            return ListView.builder(
-              itemCount: 10,
-              itemBuilder: (context, index) {
-                return HomeItemWidget(
-                  onTap: () {},
-                );
-              },
+              ),
             );
-          },
-        ),
+          }
+
+          return ListView.builder(
+            itemCount: state.userModel.userNotes.length,
+            itemBuilder: (context, index) {
+              return HomeItemWidget(
+                onTap: () {
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(
+                  //     builder: (context) {
+                  //       return UpdateNotes(
+                  //         notesModel: state.userModel.userNotes[index],
+                  //         indexNotesModel: index,
+                  //       );
+                  //     },
+                  //   ),
+                  // );
+                },
+                title: state.userModel.userNotes[index].title,
+              );
+            },
+          );
+        },
+        listener: (BuildContext context, state) {
+          if (state.statusMessage == "pop") {
+            Navigator.pop(context);
+          }
+        },
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
+      floatingActionButton: CustomFloatingActionButton(
+        onTap: () {
           NavigationService.instance
               .navigateMyScreen(routeName: AppRoutesNames.add);
-        }, // A different icon
-        backgroundColor: Colors.green, // Custom background color
-        elevation: 10.0, // Custom elevation
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: Icon(
-          Icons.add,
-          size: 30.sp,
-          color: Colors.black,
-        ), // Custom shape
+        },
       ),
     );
   }
