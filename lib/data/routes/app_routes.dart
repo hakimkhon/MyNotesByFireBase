@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:mynotesfire/ui/screens/add_edit/edit_note_screen.dart';
 import 'package:mynotesfire/ui/screens/auth/signup_screen.dart';
 import 'package:mynotesfire/ui/screens/home/home_screen.dart';
 import 'package:mynotesfire/ui/screens/auth/login_screen.dart';
-import 'package:mynotesfire/ui/screens/add_edit/add_notes_screen.dart';
+import 'package:mynotesfire/ui/screens/add_edit/add_note_screen.dart';
 import 'package:mynotesfire/ui/screens/slpash/splash_screen.dart';
 
 class AppRoutesNames {
@@ -11,6 +12,7 @@ class AppRoutesNames {
   static const String login = '/login';
   static const String splash = '/splash';
   static const String add = '/add';
+  static const String edit = '/edit';
 }
 
 class AppRoutes {
@@ -20,8 +22,10 @@ class AppRoutes {
 
   static Route generateRoute(RouteSettings settings) {
     switch (settings.name) {
+      case AppRoutesNames.edit:
+        return MaterialPageRoute(builder: (context) => const EditNoteScreen());
       case AppRoutesNames.add:
-        return MaterialPageRoute(builder: (context) => const AddNotesScreen());
+        return MaterialPageRoute(builder: (context) => const AddNoteScreen());
       case AppRoutesNames.splash:
         return MaterialPageRoute(builder: (context) => const SplashScreen());
       case AppRoutesNames.login:

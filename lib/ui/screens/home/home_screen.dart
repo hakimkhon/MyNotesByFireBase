@@ -55,17 +55,10 @@ class _HomeScreenState extends State<HomeScreen> {
             itemBuilder: (context, index) {
               return HomeItemWidget(
                 onTap: () {
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(
-                  //     builder: (context) {
-                  //       return UpdateNotes(
-                  //         notesModel: state.userModel.userNotes[index],
-                  //         indexNotesModel: index,
-                  //       );
-                  //     },
-                  //   ),
-                  // );
+                  NavigationService.instance.navigateMyScreen(
+                    routeName: AppRoutesNames.edit,
+                    arguments: state.userModel.userNotes[index],
+                  );
                 },
                 title: state.userModel.userNotes[index].title,
               );

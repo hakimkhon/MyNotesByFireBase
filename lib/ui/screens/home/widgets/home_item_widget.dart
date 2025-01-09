@@ -17,7 +17,9 @@ class HomeItemWidget extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 8.w),
       child: ZoomTapAnimation(
-        onTap: () {},
+        onTap: () {
+          onTap();
+        },
         child: SizedBox(
           width: double.infinity,
           height: 80.h,

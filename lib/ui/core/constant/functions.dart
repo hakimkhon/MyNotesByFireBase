@@ -1,6 +1,6 @@
 class MyFunctions {
-  static String formatDateTime(DateTime dateTime) {
-    final DateTime dt = DateTime.parse(dateTime as String);
+  static String formatDateTime(String dateTime) {
+    final DateTime dt = DateTime.parse(dateTime);
     final now = DateTime.now();
 
     if (dt.year == now.year && dt.month == now.month && dt.day == now.day) {

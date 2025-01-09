@@ -11,7 +11,7 @@ class CustomFloatingActionButton extends StatelessWidget {
       onPressed: () {
         onTap();
       },
-      backgroundColor: Colors.green, // Custom background color
+      backgroundColor: Colors.indigo, // Custom background color
       elevation: 10.0, // Custom elevation
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10),

@@ -7,16 +7,18 @@ import 'package:mynotesfire/data/model/notes_model.dart';
 import 'package:mynotesfire/ui/screens/widgets/custom_app_bar_widget.dart';
 import 'package:mynotesfire/ui/screens/add_edit/widgets/custom_btn_widget.dart';
 
-class AddNotesScreen extends StatefulWidget {
-  const AddNotesScreen({super.key});
-
+class AddNoteScreen extends StatefulWidget {
+  const AddNoteScreen({
+    super.key,
+  });
   @override
-  State<AddNotesScreen> createState() => _AddNotesScreenState();
+  State<AddNoteScreen> createState() => _AddNoteScreenState();
 }
 
-class _AddNotesScreenState extends State<AddNotesScreen> {
+class _AddNoteScreenState extends State<AddNoteScreen> {
   String title = "";
   String subTitle = "";
+
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +27,7 @@ class _AddNotesScreenState extends State<AddNotesScreen> {
           context.watch<UserCubit>().state.formsStatus != FormsStatus.loading,
       child: Scaffold(
         appBar: const CustomAppBar(
-          title: "Add Note",
+          title: 'Add Note',
           loadingIcon: true,
         ),
         body: SingleChildScrollView(
