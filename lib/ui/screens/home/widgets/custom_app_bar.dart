@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:mynotesfire/data/routes/app_routes.dart';
-import 'package:mynotesfire/data/service/navigation_service.dart';
+// import 'package:mynotesfire/data/routes/app_routes.dart';
+// import 'package:mynotesfire/data/service/navigation_service.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
@@ -25,20 +25,20 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           fontWeight: FontWeight.bold,
         ),
       ),
-      actions: [
-        IconButton(
-          icon: Icon(
-            Icons.arrow_circle_right_outlined,
-            color: Colors.black,
-            size: 22.sp,
-          ),
-          onPressed: () {
-            NavigationService.instance.navigateMyScreenAndRemoveUntil(
-              routeName: AppRoutesNames.signup,
-            );
-          },
-        ),
-      ],
+      // actions: [
+      //   IconButton(
+      //     icon: Icon(
+      //       Icons.arrow_circle_right_outlined,
+      //       color: Colors.black,
+      //       size: 22.sp,
+      //     ),
+      //     onPressed: () {
+      //       NavigationService.instance.navigateMyScreenAndRemoveUntil(
+      //         routeName: AppRoutesNames.signup,
+      //       );
+      //     },
+      //   ),
+      // ],
       automaticallyImplyLeading: false,
       // backgroundColor: Colors.blue,
     );
