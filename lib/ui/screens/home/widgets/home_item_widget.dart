@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
 class HomeItemWidget extends StatelessWidget {
   final VoidCallback onTap;
@@ -16,10 +15,8 @@ class HomeItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 8.w),
-      child: ZoomTapAnimation(
-        onTap: () {
-          onTap();
-        },
+      child: GestureDetector(
+        onTap: onTap,
         child: SizedBox(
           width: double.infinity,
           height: 80.h,
