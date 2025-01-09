@@ -57,7 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 onTap: () {
                   NavigationService.instance.navigateMyScreen(
                     routeName: AppRoutesNames.edit,
-                    arguments: state.userModel.userNotes[index],
+                    arguments: [state.userModel.userNotes[index], index],
                   );
                 },
                 title: state.userModel.userNotes[index].title,

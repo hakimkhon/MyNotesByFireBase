@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mynotesfire/data/model/notes_model.dart';
 import 'package:mynotesfire/ui/screens/add_edit/edit_note_screen.dart';
 import 'package:mynotesfire/ui/screens/auth/signup_screen.dart';
 import 'package:mynotesfire/ui/screens/home/home_screen.dart';
@@ -23,7 +24,11 @@ class AppRoutes {
   static Route generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case AppRoutesNames.edit:
-        return MaterialPageRoute(builder: (context) => const EditNoteScreen());
+        return MaterialPageRoute(
+            builder: (context) => EditNoteScreen(
+                  notesModel: settings.arguments as NotesModel,
+                  indexNotesModel: settings.arguments as int,
+                ));
       case AppRoutesNames.add:
         return MaterialPageRoute(builder: (context) => const AddNoteScreen());
       case AppRoutesNames.splash:

@@ -1,18 +1,23 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mynotesfire/cubit/user/user_cubit.dart';
 import 'package:mynotesfire/data/enums/forms_status.dart';
 import 'package:mynotesfire/data/model/notes_model.dart';
-import 'package:mynotesfire/ui/screens/widgets/custom_app_bar_widget.dart';
 import 'package:mynotesfire/ui/screens/add_edit/widgets/custom_btn_widget.dart';
+import 'package:mynotesfire/ui/screens/widgets/custom_app_bar_widget.dart';
 
 class EditNoteScreen extends StatefulWidget {
-  final NotesModel? notesModel;
   const EditNoteScreen({
     super.key,
-    this.notesModel,
+    required this.notesModel,
+    required this.indexNotesModel,
   });
+
+  final NotesModel notesModel;
+  final int indexNotesModel;
+
   @override
   State<EditNoteScreen> createState() => _EditNoteScreenState();
 }
@@ -23,48 +28,50 @@ class _EditNoteScreenState extends State<EditNoteScreen> {
 
   @override
   void initState() {
-    _controllerTitle.text = widget.notesModel!.title;
-    _controllerSubTitle.text = widget.notesModel!.subTitle;
+    _controllerTitle.text = widget.notesModel.title;
+    _controllerSubTitle.text = widget.notesModel.subTitle;
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: const CustomAppBar(
-        title: 'Edit Note',
-        loadingIcon: true,
-      ),
-      body: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(vertical: 15.h, horizontal: 30.w),
-        child: Column(
-          children: [
-            TextFormField(
-              onChanged: (v) => setState(() {}),
-              controller: _controllerTitle,
-            ),
-            30.verticalSpace,
-            TextFormField(
-              onChanged: (v) => setState(() {}),
-              controller: _controllerSubTitle,
-            ),
-            30.verticalSpace,
-            CustomBtnWidget(
-              data: "Submit",
-              isActiveButton: checkInput,
-              isLoading: context.watch<UserCubit>().state.formsStatus ==
-                  FormsStatus.loading,
-              onTap: () {
-                FocusScope.of(context).unfocus();
-                // context.read<UserCubit>().saveNotes(
-                //       notesModel: NotesModel(
-                //         title: title,
-                //         subTitle: subTitle,
-                //       ),
-                //     );
-              },
-            )
-          ],
+    return PopScope(
+      canPop:
+          context.watch<UserCubit>().state.formsStatus != FormsStatus.loading,
+      child: Scaffold(
+        appBar: const CustomAppBar(title: "Edit Notes"),
+        body: SingleChildScrollView(
+          padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 30.h),
+          child: Column(
+            children: [
+              TextFormField(
+                controller: _controllerTitle,
+                onChanged: (v) => setState(() {}),
+                decoration: const InputDecoration(hintText: "Inter title.."),
+              ),
+              20.verticalSpace,
+              TextFormField(
+                controller: _controllerSubTitle,
+                onChanged: (v) => setState(() {}),
+                decoration: const InputDecoration(hintText: "Inter sub title.."),
+              ),
+              30.verticalSpace,
+              CustomBtnWidget(
+                isLoading: context.watch<UserCubit>().state.formsStatus ==
+                    FormsStatus.loading,
+                isActiveButton: checkInput,
+                onTap: () {
+                  FocusScope.of(context).unfocus();
+                  context.read<UserCubit>().updateNotes(
+                      notesModel: NotesModel(
+                        subTitle: _controllerSubTitle.text,
+                        title: _controllerTitle.text,
+                      ),
+                      indexNotesModel: widget.indexNotesModel);
+                }, data: 'Update',
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -72,7 +79,9 @@ class _EditNoteScreenState extends State<EditNoteScreen> {
 
   bool get checkInput {
     return _controllerTitle.text.isNotEmpty &&
-        _controllerSubTitle.text.isNotEmpty;
+        _controllerSubTitle.text.isNotEmpty &&
+        (_controllerSubTitle.text != widget.notesModel.subTitle ||
+            _controllerTitle.text != widget.notesModel.title);
   }
 
   @override
