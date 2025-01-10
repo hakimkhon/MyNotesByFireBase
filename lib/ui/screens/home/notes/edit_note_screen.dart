@@ -1,11 +1,10 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mynotesfire/cubit/user/user_cubit.dart';
 import 'package:mynotesfire/data/enums/forms_status.dart';
 import 'package:mynotesfire/data/model/notes_model.dart';
-import 'package:mynotesfire/ui/screens/add_edit/widgets/custom_btn_widget.dart';
+import 'package:mynotesfire/ui/screens/home/custom_btn_widget.dart';
 import 'package:mynotesfire/ui/screens/widgets/custom_app_bar_widget.dart';
 
 class EditNoteScreen extends StatefulWidget {
@@ -39,7 +38,7 @@ class _EditNoteScreenState extends State<EditNoteScreen> {
       canPop:
           context.watch<UserCubit>().state.formsStatus != FormsStatus.loading,
       child: Scaffold(
-        appBar: const CustomAppBar(title: "Edit Notes"),
+        appBar: const CustomAppBar(title: "Edit Notes", loadingIcon: true),
         body: SingleChildScrollView(
           padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 30.h),
           child: Column(
@@ -53,7 +52,8 @@ class _EditNoteScreenState extends State<EditNoteScreen> {
               TextFormField(
                 controller: _controllerSubTitle,
                 onChanged: (v) => setState(() {}),
-                decoration: const InputDecoration(hintText: "Inter sub title.."),
+                decoration:
+                    const InputDecoration(hintText: "Inter sub title.."),
               ),
               30.verticalSpace,
               CustomBtnWidget(
@@ -68,7 +68,8 @@ class _EditNoteScreenState extends State<EditNoteScreen> {
                         title: _controllerTitle.text,
                       ),
                       indexNotesModel: widget.indexNotesModel);
-                }, data: 'Update',
+                },
+                data: 'Update',
               ),
             ],
           ),

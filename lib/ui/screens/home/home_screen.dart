@@ -56,10 +56,16 @@ class _HomeScreenState extends State<HomeScreen> {
               return HomeItemWidget(
                 onTap: () {
                   NavigationService.instance.navigateMyScreen(
-                    routeName: AppRoutesNames.edit,
-                    arguments: [state.userModel.userNotes[index], index],
+                    routeName: AppRoutesNames.detail,
+                    arguments: state.userModel.userNotes[index],
                   );
                 },
+                // onTap: () {
+                //   NavigationService.instance.navigateMyScreen(
+                //     routeName: AppRoutesNames.edit,
+                //     arguments: [state.userModel.userNotes[index], index],
+                //   );
+                // },
                 title: state.userModel.userNotes[index].title,
               );
             },

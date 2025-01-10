@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:mynotesfire/ui/screens/add_edit/edit_note_screen.dart';
+import 'package:mynotesfire/data/model/notes_model.dart';
+import 'package:mynotesfire/ui/screens/home/notes/detail_note_screen.dart';
+import 'package:mynotesfire/ui/screens/home/notes/edit_note_screen.dart';
 import 'package:mynotesfire/ui/screens/auth/signup_screen.dart';
 import 'package:mynotesfire/ui/screens/home/home_screen.dart';
 import 'package:mynotesfire/ui/screens/auth/login_screen.dart';
-import 'package:mynotesfire/ui/screens/add_edit/add_note_screen.dart';
+import 'package:mynotesfire/ui/screens/home/notes/add_note_screen.dart';
 import 'package:mynotesfire/ui/screens/slpash/splash_screen.dart';
 
 class AppRoutesNames {
@@ -12,6 +14,7 @@ class AppRoutesNames {
   static const String login = '/login';
   static const String splash = '/splash';
   static const String add = '/add';
+  static const String detail = '/detail';
   static const String edit = '/edit';
 }
 
@@ -34,6 +37,10 @@ class AppRoutes {
           );
         }
         throw ArgumentError("Invalid arguments for EditNoteScreen");
+      case AppRoutesNames.detail:
+        return MaterialPageRoute(
+            builder: (context) =>
+                DetailNoteScreen(notesModel: settings.arguments as NotesModel));
       case AppRoutesNames.add:
         return MaterialPageRoute(builder: (context) => const AddNoteScreen());
       case AppRoutesNames.splash:

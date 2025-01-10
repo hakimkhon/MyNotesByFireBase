@@ -98,6 +98,24 @@ class UserCubit extends Cubit<UserState> {
     }
   }
 
+  // Future<void> updateNotesNextDetail(
+  //     {required NotesModel notesModel}) async {
+  //   emit(state.copyWith(formsStatus: FormsStatus.loading));
+
+  //   // List<NotesModel> notes = state.userModel.userNotes;
+
+  //   NetworkResponse networkResponse = await _userRepository.updateUserNotes(
+  //     userModel: state.userModel.copyWith(userNotes: notes),
+  //   );
+
+  //   if (networkResponse.errorText.isEmpty) {
+  //     emit(state.copyWith(statusMessage: "pop"));
+  //     fetchUserForDocId(docId: state.userModel.docId);
+  //   } else {
+  //     setStateToError(networkResponse.errorText);
+  //   }
+  // }
+
   void setStateToError(String errorText) {
     emit(
       state.copyWith(
