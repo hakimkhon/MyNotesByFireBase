@@ -62,6 +62,31 @@ class AuthRepository {
     return networkResponse;
   }
 
+  Future<NetworkResponse> loginAdmin({
+    required String phoneNumber,
+    required String password,
+  }) async {
+    NetworkResponse networkResponse = NetworkResponse();
+    try {
+      var result = await _firebaseFirestore
+          .collection(_fixedNames.collectionName)
+          .where(_fixedNames.phoneNumber, isEqualTo: "@$phoneNumber")
+          .where(_fixedNames.password, isEqualTo: password)
+          .get();
+      // if (userCredential.user != null) {
+      //   StorageRepository.setString(key: _fixedNames.userEmail, value: phoneNumber);
+      // }
+    } on FirebaseAuthException catch (e) {
+      networkResponse.errorText = e.friendlyMessage;
+    } on FirebaseException catch (e) {
+      networkResponse.errorText = e.friendlyMessage;
+    } catch (e) {
+      networkResponse.errorText = "Noma'lum xatolik: catch (e) ";
+    }
+
+    return networkResponse;
+  }
+
   Future<NetworkResponse> saveUser(String email) async {
     NetworkResponse networkResponse = NetworkResponse();
     UserModel userModel = UserModel.initial();

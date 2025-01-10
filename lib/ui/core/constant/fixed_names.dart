@@ -9,4 +9,5 @@ class FixedNames {
   final subTitle = "sub_title";
   final createDate = "create_date";
   final userNotes = "user_notes";
+  final phoneNumber = "phone_number";
 }
