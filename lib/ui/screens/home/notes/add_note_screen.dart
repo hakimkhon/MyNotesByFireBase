@@ -5,7 +5,7 @@ import 'package:mynotesfire/cubit/user/user_cubit.dart';
 import 'package:mynotesfire/data/enums/forms_status.dart';
 import 'package:mynotesfire/data/model/notes_model.dart';
 import 'package:mynotesfire/ui/screens/widgets/custom_app_bar_widget.dart';
-import 'package:mynotesfire/ui/screens/home/custom_btn_widget.dart';
+import 'package:mynotesfire/ui/screens/home/widgets/custom_btn_widget.dart';
 
 class AddNoteScreen extends StatefulWidget {
   const AddNoteScreen({

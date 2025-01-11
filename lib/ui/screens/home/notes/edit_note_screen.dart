@@ -4,8 +4,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mynotesfire/cubit/user/user_cubit.dart';
 import 'package:mynotesfire/data/enums/forms_status.dart';
 import 'package:mynotesfire/data/model/notes_model.dart';
-import 'package:mynotesfire/ui/screens/home/custom_btn_widget.dart';
+import 'package:mynotesfire/ui/screens/home/widgets/custom_btn_widget.dart';
 import 'package:mynotesfire/ui/screens/widgets/custom_app_bar_widget.dart';
+import 'package:mynotesfire/ui/screens/home/widgets/my_text_form_field_widget.dart';
 
 class EditNoteScreen extends StatefulWidget {
   const EditNoteScreen({
@@ -49,12 +50,12 @@ class _EditNoteScreenState extends State<EditNoteScreen> {
                 decoration: const InputDecoration(hintText: "Inter title.."),
               ),
               20.verticalSpace,
-              TextFormField(
+              MyTextFormFieldWidget(
+                hintText: "Inter sub title..",
+                onChanget: (v) => setState(() {}),
                 controller: _controllerSubTitle,
-                onChanged: (v) => setState(() {}),
-                decoration:
-                    const InputDecoration(hintText: "Inter sub title.."),
               ),
+              
               30.verticalSpace,
               CustomBtnWidget(
                 isLoading: context.watch<UserCubit>().state.formsStatus ==
