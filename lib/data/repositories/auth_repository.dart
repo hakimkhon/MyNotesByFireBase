@@ -9,7 +9,6 @@ import 'package:mynotesfire/ui/core/constant/fixed_names.dart';
 class AuthRepository {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
-  final FixedNames _fixedNames = FixedNames();
 
   Future<NetworkResponse> registerUser({
     required String email,
@@ -23,7 +22,7 @@ class AuthRepository {
         password: password,
       );
       if (userCredential.user != null) {
-        StorageRepository.setString(key: _fixedNames.userEmail, value: email);
+        StorageRepository.setString(key: FixedNames.userEmail, value: email);
         return await saveUser(email);
       }
     } on FirebaseAuthException catch (e) {
@@ -49,7 +48,7 @@ class AuthRepository {
         password: password,
       );
       if (userCredential.user != null) {
-        StorageRepository.setString(key: _fixedNames.userEmail, value: email);
+        StorageRepository.setString(key: FixedNames.userEmail, value: email);
       }
     } on FirebaseAuthException catch (e) {
       networkResponse.errorText = e.friendlyMessage;
@@ -68,14 +67,14 @@ class AuthRepository {
 
     try {
       var result = await _firebaseFirestore
-          .collection(_fixedNames.collectionName)
+          .collection(FixedNames.collectionName)
           .add(userModel.copyWith(email: email).toJson());
 
       await _firebaseFirestore
-          .collection(_fixedNames.collectionName)
+          .collection(FixedNames.collectionName)
           .doc(result.id)
           .update({
-        _fixedNames.docID: result.id
+        FixedNames.docID: result.id
       }); //doc_id bo'lsa yangilaydi yo'q bo'lsa yaratib beradi
     } on FirebaseException catch (e) {
       networkResponse.errorText = e.friendlyMessage;

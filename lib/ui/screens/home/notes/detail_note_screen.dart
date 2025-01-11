@@ -6,8 +6,9 @@ import 'package:mynotesfire/ui/screens/widgets/custom_app_bar_widget.dart';
 
 class DetailNoteScreen extends StatelessWidget {
   final NotesModel notesModel;
+  final int myIndex;
 
-  const DetailNoteScreen({super.key, required this.notesModel});
+  const DetailNoteScreen({super.key, required this.notesModel, required this.myIndex, });
 
   @override
   Widget build(BuildContext context) {

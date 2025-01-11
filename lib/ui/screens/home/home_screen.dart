@@ -6,9 +6,10 @@ import 'package:mynotesfire/cubit/user/user_state.dart';
 import 'package:mynotesfire/data/enums/forms_status.dart';
 import 'package:mynotesfire/data/routes/app_routes.dart';
 import 'package:mynotesfire/data/service/navigation_service.dart';
+import 'package:mynotesfire/ui/screens/home/widgets/home_item_widget.dart';
 import 'package:mynotesfire/ui/screens/widgets/custom_app_bar_widget.dart';
 import 'package:mynotesfire/ui/screens/home/widgets/custom_fab_widget.dart';
-import 'package:mynotesfire/ui/screens/home/widgets/home_item_widget.dart';
+
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -57,7 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 onTap: () {
                   NavigationService.instance.navigateMyScreen(
                     routeName: AppRoutesNames.detail,
-                    arguments: state.userModel.userNotes[index],
+                    arguments: {"model": state.userModel.userNotes[index], "index": index},
                   );
                 },
                 // onTap: () {

@@ -23,7 +23,7 @@ class UserCubit extends Cubit<UserState> {
         ),
       );
     } else {
-      if (networkResponse.errorText == FixedNames().notFound) {
+      if (networkResponse.errorText == FixedNames.notFound) {
         emit(state.copyWith(formsStatus: FormsStatus.unAuthenticated));
       } else {
         setStateToError(networkResponse.errorText);
@@ -44,7 +44,7 @@ class UserCubit extends Cubit<UserState> {
         ),
       );
     } else {
-      if (networkResponse.errorText == FixedNames().notFound) {
+      if (networkResponse.errorText == FixedNames.notFound) {
         emit(state.copyWith(formsStatus: FormsStatus.unAuthenticated));
       } else {
         setStateToError(networkResponse.errorText);

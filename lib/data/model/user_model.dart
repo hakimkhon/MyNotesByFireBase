@@ -14,13 +14,11 @@ class UserModel {
     required this.userNotes,
   });
   factory UserModel.fromJson(Map<String, dynamic> json) {
-    FixedNames fixedNames = FixedNames();
-
     return UserModel(
-      docId: json[fixedNames.docID] as String? ?? "",
-      email: json[fixedNames.userEmail] as String? ?? "",
-      fullName: json[fixedNames.fullName] as String? ?? "",
-      userNotes: (json[fixedNames.userNotes] as List?)
+      docId: json[FixedNames.docID] as String? ?? "",
+      email: json[FixedNames.userEmail] as String? ?? "",
+      fullName: json[FixedNames.fullName] as String? ?? "",
+      userNotes: (json[FixedNames.userNotes] as List?)
               ?.map((value) => NotesModel.fromJson(value))
               .toList() ??
           [],
@@ -28,13 +26,11 @@ class UserModel {
   }
 
   Map<String, dynamic> toJson() {
-    FixedNames fixedNames = FixedNames();
-
     return {
-      fixedNames.docID: docId,
-      fixedNames.userEmail: email,
-      fixedNames.fullName: fullName,
-      fixedNames.userNotes: userNotes.map((value) => value.toJson()).toList(),
+      FixedNames.docID: docId,
+      FixedNames.userEmail: email,
+      FixedNames.fullName: fullName,
+      FixedNames.userNotes: userNotes.map((value) => value.toJson()).toList(),
     };
   }
 
@@ -62,10 +58,8 @@ class UserModel {
   }
 
   Map<String, dynamic> toJsonUserNotes() {
-    FixedNames fixedNames = FixedNames();
-
     return {
-      fixedNames.userNotes: userNotes.map((value) => value.toJson()).toList(),
+      FixedNames.userNotes: userNotes.map((value) => value.toJson()).toList(),
     };
   }
 }

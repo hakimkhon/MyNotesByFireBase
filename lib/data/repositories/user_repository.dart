@@ -7,16 +7,15 @@ import 'package:mynotesfire/ui/core/constant/fixed_names.dart';
 
 class UserRepository {
   final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
-  final FixedNames _fixedNames = FixedNames();
-
+  
   Future<NetworkResponse> getUser() async {
     NetworkResponse networkResponse = NetworkResponse();
-    String userEmail = StorageRepository.getString(key: _fixedNames.userEmail);
+    String userEmail = StorageRepository.getString(key: FixedNames.userEmail);
 
     try {
       var result = await _firebaseFirestore
-          .collection(_fixedNames.collectionName)
-          .where(_fixedNames.userEmail, isEqualTo: userEmail)
+          .collection(FixedNames.collectionName)
+          .where(FixedNames.userEmail, isEqualTo: userEmail)
           .get();
 
       List<UserModel> userModel =
@@ -25,7 +24,7 @@ class UserRepository {
       if (userModel.isNotEmpty) {
         networkResponse.data = userModel.first;
       } else {
-        networkResponse.errorText = _fixedNames.notFound;
+        networkResponse.errorText = FixedNames.notFound;
       }
     } on FirebaseException catch (e) {
       networkResponse.errorText = e.friendlyMessage;
@@ -40,14 +39,14 @@ class UserRepository {
   
     try {
       var result = await _firebaseFirestore
-          .collection(_fixedNames.collectionName)
+          .collection(FixedNames.collectionName)
           .doc(docId)
           .get();
 
       if (result.data() != null) {
         UserModel.fromJson(result.data()!);
       } else {
-        networkResponse.errorText = _fixedNames.notFound;
+        networkResponse.errorText = FixedNames.notFound;
       }
     } on FirebaseException catch (e) {
       networkResponse.errorText = e.friendlyMessage;
@@ -64,7 +63,7 @@ class UserRepository {
 
     try {
       await _firebaseFirestore
-          .collection(_fixedNames.collectionName)
+          .collection(FixedNames.collectionName)
           .doc(userModel.docId)
           .update(userModel.toJsonUserNotes());
     } on FirebaseException catch (e) {

@@ -6,7 +6,7 @@ import 'package:mynotesfire/ui/core/constant/fixed_names.dart';
 
 class NoteReposytory {
   final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
-  final FixedNames _fixedNames = FixedNames();
+  
 
   Future<NetworkResponse> updateNotes({
     required NotesModel notesModel,
@@ -15,7 +15,7 @@ class NoteReposytory {
 
     try {
       await _firebaseFirestore
-          .collection(_fixedNames.userNotes)
+          .collection(FixedNames.userNotes)
           .doc()
           .update(notesModel.toJson());
     } on FirebaseException catch (e) {

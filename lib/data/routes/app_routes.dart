@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mynotesfire/data/model/notes_model.dart';
 import 'package:mynotesfire/ui/screens/home/notes/detail_note_screen.dart';
 import 'package:mynotesfire/ui/screens/home/notes/edit_note_screen.dart';
 import 'package:mynotesfire/ui/screens/auth/signup_screen.dart';
@@ -39,8 +38,11 @@ class AppRoutes {
         throw ArgumentError("Invalid arguments for EditNoteScreen");
       case AppRoutesNames.detail:
         return MaterialPageRoute(
-            builder: (context) =>
-                DetailNoteScreen(notesModel: settings.arguments as NotesModel));
+          builder: (context) => DetailNoteScreen(
+            notesModel: (settings.arguments as Map)["model"],
+            myIndex: (settings.arguments as Map)["index"],
+          ),
+        );
       case AppRoutesNames.add:
         return MaterialPageRoute(builder: (context) => const AddNoteScreen());
       case AppRoutesNames.splash:

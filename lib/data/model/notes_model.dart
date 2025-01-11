@@ -10,19 +10,18 @@ class NotesModel {
   });
 
   factory NotesModel.fromJson(Map<String, dynamic> json) {
-    FixedNames fixedNames = FixedNames();
+   
 
     return NotesModel(
-      title: json[fixedNames.title] as String? ?? "",
-      subTitle: json[fixedNames.subTitle] as String? ?? "",
+      title: json[FixedNames.title] as String? ?? "",
+      subTitle: json[FixedNames.subTitle] as String? ?? "",
     );
   }
   Map<String, dynamic> toJson() {
-    FixedNames fixedNames = FixedNames();
 
     return {
-      fixedNames.title: title,
-      fixedNames.subTitle: subTitle,
+      FixedNames.title: title,
+      FixedNames.subTitle: subTitle,
     };
   }
 }

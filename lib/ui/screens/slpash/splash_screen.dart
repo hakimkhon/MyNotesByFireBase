@@ -19,7 +19,7 @@ class _SplashScreenState extends State<SplashScreen> {
       const Duration(seconds: 1),
       () {
         String userEmail =
-            StorageRepository.getString(key: FixedNames().userEmail);
+            StorageRepository.getString(key: FixedNames.userEmail);
         if (userEmail.isEmpty) {
           NavigationService.instance
               .navigateMyScreenReplacement(routeName: AppRoutesNames.signup);
