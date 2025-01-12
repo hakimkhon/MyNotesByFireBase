@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-// import 'package:mynotesfire/data/routes/app_routes.dart';
-// import 'package:mynotesfire/data/service/navigation_service.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
   final bool loadingIcon;
-  // final List<Widget>? actions;
+  final Widget? widget;
+  final List<Widget>? actions;
 
   const CustomAppBar({
     super.key,
     required this.title,
     this.loadingIcon = false,
-
-    // this.actions,
+    this.widget,
+    this.actions,
   });
 
   @override
@@ -28,22 +27,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           fontWeight: FontWeight.bold,
         ),
       ),
-      // actions: [
-      //   IconButton(
-      //     icon: Icon(
-      //       Icons.arrow_circle_right_outlined,
-      //       color: Colors.black,
-      //       size: 22.sp,
-      //     ),
-      //     onPressed: () {
-      //       NavigationService.instance.navigateMyScreenAndRemoveUntil(
-      //         routeName: AppRoutesNames.signup,
-      //       );
-      //     },
-      //   ),
-      // ],
+      actions: actions,
       automaticallyImplyLeading: loadingIcon,
-      // backgroundColor: Colors.blue,
     );
   }
 

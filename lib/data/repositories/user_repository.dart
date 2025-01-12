@@ -14,7 +14,7 @@ class UserRepository {
 
     try {
       var result = await _firebaseFirestore
-          .collection(FixedNames.collectionName)
+          .collection(FixedNames.users)
           .where(FixedNames.userEmail, isEqualTo: userEmail)
           .get();
 
@@ -39,7 +39,7 @@ class UserRepository {
   
     try {
       var result = await _firebaseFirestore
-          .collection(FixedNames.collectionName)
+          .collection(FixedNames.users)
           .doc(docId)
           .get();
 
@@ -63,7 +63,7 @@ class UserRepository {
 
     try {
       await _firebaseFirestore
-          .collection(FixedNames.collectionName)
+          .collection(FixedNames.users)
           .doc(userModel.docId)
           .update(userModel.toJsonUserNotes());
     } on FirebaseException catch (e) {

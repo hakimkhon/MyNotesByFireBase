@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 
 class MyTextFormFieldWidget extends StatelessWidget {
   final String hintText;
-  final Function onChanget;
+  final Function? onChanget;
   final TextEditingController? controller;
 
   const MyTextFormFieldWidget({
     super.key,
     required this.hintText,
-    required this.onChanget,
+   this.onChanget,
     this.controller,
   });
 
@@ -17,7 +17,7 @@ class MyTextFormFieldWidget extends StatelessWidget {
     return TextFormField(
       decoration: InputDecoration(hintText: hintText),
       controller: controller,
-      onChanged: onChanget(),
+      onChanged: onChanget!(),
     );
   }
 }

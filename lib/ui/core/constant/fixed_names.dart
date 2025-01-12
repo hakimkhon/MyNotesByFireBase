@@ -1,5 +1,5 @@
 class FixedNames {
-  static const collectionName = "users";
+  static const users = "users";
   static const docID = "doc_id";
   static const userEmail = "user_email";
   static const password = "password";

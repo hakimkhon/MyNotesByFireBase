@@ -25,17 +25,25 @@ class AppRoutes {
   static Route generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case AppRoutesNames.edit:
-        if (settings.arguments is List &&
-            (settings.arguments as List).length >= 2) {
-          final args = settings.arguments as List;
-          return MaterialPageRoute(
-            builder: (context) => EditNoteScreen(
-              notesModel: args[0],
-              indexNotesModel: args[1],
-            ),
-          );
-        }
-        throw ArgumentError("Invalid arguments for EditNoteScreen");
+        return MaterialPageRoute(
+          builder: (context) => EditNoteScreen(
+            notesModel: (settings.arguments as Map)["model"],
+            indexNotesModel: (settings.arguments as Map)["index"],
+          ),
+        );
+
+      // case AppRoutesNames.edit:
+      //   if (settings.arguments is List &&
+      //       (settings.arguments as List).length >= 2) {
+      //     final args = settings.arguments as List;
+      //     return MaterialPageRoute(
+      //       builder: (context) => EditNoteScreen(
+      //         notesModel: args[0],
+      //         indexNotesModel: args[1],
+      //       ),
+      //     );
+      //   }
+      //   throw ArgumentError("Invalid arguments for EditNoteScreen");
       case AppRoutesNames.detail:
         return MaterialPageRoute(
           builder: (context) => DetailNoteScreen(

@@ -60,26 +60,20 @@ class UserCubit extends Cubit<UserState> {
 
     NetworkResponse networkResponse = await _userRepository.updateUserNotes(
       userModel: state.userModel.copyWith(userNotes: notes),
-      // userModel: state.userModel
-      //     .copyWith(userNotes: [...state.userModel.userNotes, notesModel]),
     );
 
     if (networkResponse.errorText.isEmpty) {
       emit(state.copyWith(statusMessage: "pop"));
       fetchUserForDocId(docId: state.userModel.docId);
-      // emit(
-      //   state.copyWith(
-      //     formsStatus: FormsStatus.success,
-      //     userModel: state.userModel.copyWith(userNotes: notes),
-      //   ),
-      // );
     } else {
       setStateToError(networkResponse.errorText);
     }
   }
 
-  Future<void> updateNotes(
-      {required NotesModel notesModel, required int indexNotesModel}) async {
+  Future<void> updateNotes({
+    required NotesModel notesModel,
+    required int indexNotesModel,
+  }) async {
     emit(state.copyWith(formsStatus: FormsStatus.loading));
 
     List<NotesModel> notes = state.userModel.userNotes;
@@ -97,24 +91,6 @@ class UserCubit extends Cubit<UserState> {
       setStateToError(networkResponse.errorText);
     }
   }
-
-  // Future<void> updateNotesNextDetail(
-  //     {required NotesModel notesModel}) async {
-  //   emit(state.copyWith(formsStatus: FormsStatus.loading));
-
-  //   // List<NotesModel> notes = state.userModel.userNotes;
-
-  //   NetworkResponse networkResponse = await _userRepository.updateUserNotes(
-  //     userModel: state.userModel.copyWith(userNotes: notes),
-  //   );
-
-  //   if (networkResponse.errorText.isEmpty) {
-  //     emit(state.copyWith(statusMessage: "pop"));
-  //     fetchUserForDocId(docId: state.userModel.docId);
-  //   } else {
-  //     setStateToError(networkResponse.errorText);
-  //   }
-  // }
 
   void setStateToError(String errorText) {
     emit(

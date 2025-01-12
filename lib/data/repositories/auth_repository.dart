@@ -67,11 +67,11 @@ class AuthRepository {
 
     try {
       var result = await _firebaseFirestore
-          .collection(FixedNames.collectionName)
+          .collection(FixedNames.users)
           .add(userModel.copyWith(email: email).toJson());
 
       await _firebaseFirestore
-          .collection(FixedNames.collectionName)
+          .collection(FixedNames.users)
           .doc(result.id)
           .update({
         FixedNames.docID: result.id

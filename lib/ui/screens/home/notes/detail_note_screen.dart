@@ -1,21 +1,44 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mynotesfire/data/model/notes_model.dart';
-import 'package:mynotesfire/ui/screens/home/widgets/custom_btn_widget.dart';
+import 'package:mynotesfire/data/routes/app_routes.dart';
+import 'package:mynotesfire/data/service/navigation_service.dart';
 import 'package:mynotesfire/ui/screens/widgets/custom_app_bar_widget.dart';
 
 class DetailNoteScreen extends StatelessWidget {
   final NotesModel notesModel;
   final int myIndex;
 
-  const DetailNoteScreen({super.key, required this.notesModel, required this.myIndex, });
+  const DetailNoteScreen({
+    super.key,
+    required this.notesModel,
+    required this.myIndex,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(
+      appBar: CustomAppBar(
         title: "Detail Note",
         loadingIcon: true,
+        actions: [
+          IconButton(
+            icon: Icon(
+              Icons.edit,
+              color: Colors.black,
+              size: 22.sp,
+            ),
+            onPressed: () {
+              debugPrint("\n+++++++++++++++++++++\n");
+              NavigationService.instance.navigateMyScreen(
+                  routeName: AppRoutesNames.edit,
+                  arguments: {
+                    "model": notesModel,
+                    "index": myIndex,
+                  });
+            },
+          )
+        ],
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 15.w),
@@ -54,14 +77,14 @@ class DetailNoteScreen extends StatelessWidget {
                 ),
               ],
             ),
-            30.verticalSpace,
-            Row(
-              children: [
-                CustomBtnWidget(data: "Update", onTap: () {}),
-                const Spacer(),
-                CustomBtnWidget(data: "Delete", onTap: () {}),
-              ],
-            ),
+            // 30.verticalSpace,
+            // Row(
+            //   children: [
+            //     CustomBtnWidget(data: "Update", onTap: () {}),
+            //     const Spacer(),
+            //     CustomBtnWidget(data: "Delete", onTap: () {}),
+            //   ],
+            // ),
           ],
         ),
       ),

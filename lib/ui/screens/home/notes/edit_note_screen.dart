@@ -6,17 +6,16 @@ import 'package:mynotesfire/data/enums/forms_status.dart';
 import 'package:mynotesfire/data/model/notes_model.dart';
 import 'package:mynotesfire/ui/screens/home/widgets/custom_btn_widget.dart';
 import 'package:mynotesfire/ui/screens/widgets/custom_app_bar_widget.dart';
-import 'package:mynotesfire/ui/screens/home/widgets/my_text_form_field_widget.dart';
 
 class EditNoteScreen extends StatefulWidget {
+  final NotesModel notesModel;
+  final int indexNotesModel;     
+
   const EditNoteScreen({
     super.key,
     required this.notesModel,
     required this.indexNotesModel,
   });
-
-  final NotesModel notesModel;
-  final int indexNotesModel;
 
   @override
   State<EditNoteScreen> createState() => _EditNoteScreenState();
@@ -50,12 +49,11 @@ class _EditNoteScreenState extends State<EditNoteScreen> {
                 decoration: const InputDecoration(hintText: "Inter title.."),
               ),
               20.verticalSpace,
-              MyTextFormFieldWidget(
-                hintText: "Inter sub title..",
-                onChanget: (v) => setState(() {}),
-                controller: _controllerSubTitle,
-              ),
-              
+              // MyTextFormFieldWidget(
+              //   hintText: "Inter sub title..",
+              //   onChanget: (v) => setState(() {}),
+              //   controller: _controllerSubTitle,
+              // ),
               30.verticalSpace,
               CustomBtnWidget(
                 isLoading: context.watch<UserCubit>().state.formsStatus ==
@@ -72,7 +70,7 @@ class _EditNoteScreenState extends State<EditNoteScreen> {
                 },
                 data: 'Update',
               ),
-            ],
+            ],                                                                                                                                                                                                                                                                                                                                                                                      
           ),
         ),
       ),
