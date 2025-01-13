@@ -26,7 +26,7 @@ class DetailNoteScreen extends StatelessWidget {
             icon: Icon(
               Icons.edit,
               color: Colors.black,
-              size: 22.sp,
+              size: 21.sp,
             ),
             onPressed: () {
               debugPrint("\n+++++++++++++++++++++\n");
